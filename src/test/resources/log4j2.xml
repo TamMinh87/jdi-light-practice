@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration monitorInterval="30" status="warn">
+
+  <Properties>
+    <Property name="logFileName">jdiEvents</Property>
+    <Property name="baseDir">./src/test/.logs</Property>
+  </Properties>
+
+  <Appenders>
+    <Console name="ConsoleAppender" target="SYSTEM_OUT" follow="true">
+      <!--PatternLayout
+              pattern="[%d{mm:ss.SSS} %highlight{${LOG_LEVEL_PATTERN:-%5p}}{FATAL=red blink, ERROR=red, WARN=yellow bold, INFO=green, DEBUG=green bold, TRACE=blue}] : %m%n${LOG_EXCEPTION_CONVERSION_WORD:-%throwable}"/-->
+      <PatternLayout pattern="[%d{mm:ss.SSS} %5p] : %m%n"/>
+    </Console>
+    <RollingFile name="FileAppender" fileName="${baseDir}/${logFileName}.log">
+      <FilePattern>${baseDir}/${logFileName}_%d{yyyy-MM-dd__HH-mm}_%i.log</FilePattern>
+      <PatternLayout pattern="[%d{HH:mm:ss} %5p] %m%n"/>
+      <Policies>
+        <TimeBasedTriggeringPolicy interval="10" modulate="true"/>
+        <SizeBasedTriggeringPolicy size="250 MB"/>
+
+      </Policies>
+      <DefaultRolloverStrategy min="1" max="5" fileIndex="max">
+        <Delete basePath="${baseDir}" maxDepth="5">
+          <IfFileName glob="${logFileName}_*.log"/>
+          <testMode>false</testMode>
+          <IfAccumulatedFileCount exceeds="2"/>
+        </Delete>
+      </DefaultRolloverStrategy>
+    </RollingFile>
+  </Appenders>
+
+  <Loggers>
+    <Root level="INFO">
+      <AppenderRef ref="FileAppender"/>
+      <AppenderRef ref="ConsoleAppender"/>
+    </Root>
+  </Loggers>
+</Configuration>
