@@ -1,4 +1,5 @@
 package org.mytests.tests.data;
+
 import org.mytests.uiobjects.example.entities.User;
 import org.testng.annotations.DataProvider;
 
@@ -32,11 +33,53 @@ public class UserDataProvider {
             d.username = "";
             d.password = "";
         });
-        c.errorMessage = "Error: Username is required.";
+        c.errorMessage = "Error: Username is required.1";
+    });
+
+    public static RegistrationData INVALID_EMAIL_CORRECT_PASSWORD = new RegistrationData().set(c -> {
+        c.registerInfo = new User().set(d -> {
+            d.username = "thuanduongtest21";
+            d.password = "Thuan120891";
+        });
+        c.errorMessage = "Please include an '@' in the email address. 'thuanduongtest21' is missing an '@'.";
+    });
+
+    public static RegistrationData EMPTY_EMAIL_CORRECT_PASSWORD = new RegistrationData().set(c -> {
+        c.registerInfo = new User().set(d -> {
+            d.username = "";
+            d.password = "Thuan120891";
+        });
+        c.errorMessage = "Error: Please provide a valid email address.";
+    });
+
+    public static RegistrationData VALID_EMAIL_EMPTY_PASSWORD = new RegistrationData().set(c -> {
+        c.registerInfo = new User().set(d -> {
+            d.username = "thuanduongtest23@gmail.com";
+            d.password = "";
+        });
+        c.errorMessage = "Error: Please enter an account password.";
+    });
+
+    public static RegistrationData EMPTY_EMAIL_EMPTY_PASSWORD = new RegistrationData().set(c -> {
+        c.registerInfo = new User().set(d -> {
+            d.username = "";
+            d.password = "";
+        });
+        c.errorMessage = "Error: Please provide a valid email address.";
     });
 
     @DataProvider(name = "failedUsers")
     public static Object[][] failedUsers() {
         return new LoginData[][]{{INCORRECT_USERNAME_PASSWORD}, {CORRECT_USERNAME_EMPTY_PASSWORD}, {EMPTY_USERNAME_VALID_PASSWORD}, {EMPTY_USERNAME_EMPTY_PASSWORD}};
+    }
+
+    @DataProvider(name = "failedRegistrationUsers")
+    public static Object[][] failedRegistrationUsers() {
+        return new RegistrationData[][]{{INVALID_EMAIL_CORRECT_PASSWORD}};
+    }
+
+    @DataProvider(name = "failedRegistrationUsersWithErrorMess")
+    public static Object[][] failedRegistrationUsersWithErrorMess() {
+        return new RegistrationData[][]{{EMPTY_EMAIL_CORRECT_PASSWORD}, {VALID_EMAIL_EMPTY_PASSWORD}, {EMPTY_EMAIL_EMPTY_PASSWORD}};
     }
 }

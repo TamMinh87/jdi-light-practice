@@ -6,4 +6,5 @@ import org.mytests.uiobjects.example.site.pages.*;
 @JSite("http://practice.automationtesting.in/")
 public class JdiTestSite {
     public static MyAccountPage myAccountPage;
+    public static HeaderPage headerPage;
 }

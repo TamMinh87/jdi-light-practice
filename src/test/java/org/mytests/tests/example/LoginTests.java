@@ -13,16 +13,27 @@ public class LoginTests implements SimpleTestsInit {
 
 
     @Test(dataProvider = "failedUsers", dataProviderClass = UserDataProvider.class)
-    public void loginIncorrectUser(LoginData loginData) {
+    public void loginWithIncorrectUser(LoginData loginData) {
         myAccountPage.open();
         loginForm.loginAs(loginData.loginInfo);
+        errorLoginMessage.has().attr("outerText", loginData.errorMessage);
     }
 
     @Test
-    public void loginTest() {
+    public void loginWithValidUser() {
+        myAccountPage.open();
+        loginForm.loginAs(DEFAULT_USER);
+        userNameLoggedIn.is().displayed();
+    }
+
+    @Test
+    public void loginAuthentication() {
         myAccountPage.open();
         loginForm.loginAs(DEFAULT_USER);
         assert userNameLoggedIn.isDisplayed();
+        logoutLink.click();
+        myAccountPage.back();
+        userNameLoggedIn.assertThat().notAppear();
     }
 
 }
