@@ -9,18 +9,16 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import org.mytests.uiobjects.example.entities.User;
 import org.mytests.uiobjects.example.site.custom.MenuItem;
-import org.mytests.uiobjects.example.site.pages.ContactFormPage;
-import org.mytests.uiobjects.example.site.pages.ContactsPage;
-import org.mytests.uiobjects.example.site.pages.HomePage;
-import org.mytests.uiobjects.example.site.pages.TikiHomePage;
+import org.mytests.uiobjects.example.site.pages.*;
 import org.mytests.uiobjects.example.site.sections.TikiLoginForm;
 import org.openqa.selenium.WebElement;
 
-@JSite("https://jdi-testing.github.io/jdi-light/")
+@JSite("http://practice.automationtesting.in/")
 public class JdiTestSite {
     public static HomePage homePage;
     public static ContactFormPage contactFormPage;
-    public static ContactsPage contactsPage;
+    public static BasketPage basketPage;
+    public static CheckOutPage checkOutPage;
 
     public static TikiHomePage tikiHomePage;
     public static TikiLoginForm tikiLoginForm;
