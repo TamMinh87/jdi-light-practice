@@ -23,7 +23,8 @@ public class HomePage extends WebPage {
     @UI("//a[contains(text(),'Description')]") Label descriptionLbl;
     @UI("//a[contains(text(),'Reviews')]") Label reviewsLbl;
     @UI(".product_title") Text productTitle;
-    @UI(".woocommerce-message") Text message;
+    @UI(".woocommerce-message")
+    public static Text message;
     @UI("//a[contains(text(),'Home')]") Link home;
     @UI(".in-stock") public static Text stockBooks;
     @UI("//input[@type='number']") public static TextField inputStock;

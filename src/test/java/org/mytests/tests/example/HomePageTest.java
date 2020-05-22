@@ -2,17 +2,18 @@ package org.mytests.tests.example;
 
 import org.mytests.tests.SimpleTestsInit;
 
+import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static org.hamcrest.Matchers.*;
 
 import org.mytests.uiobjects.example.site.sections.CheckOutForm;
 import org.testng.annotations.Test;
-
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mytests.uiobjects.example.TestData.DEFAULT_CUSTOMER;
 import static org.mytests.uiobjects.example.site.JdiTestSite.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.addOrRemoveBooks;
 import static org.mytests.uiobjects.example.site.pages.CheckOutPage.checkOutForm;
+import static org.mytests.uiobjects.example.site.pages.CheckOutPage.showCoupon;
 import static org.mytests.uiobjects.example.site.pages.HomePage.*;
 import static org.mytests.uiobjects.example.site.sections.CheckOutForm.*;
 
@@ -20,19 +21,16 @@ import static org.mytests.uiobjects.example.site.sections.CheckOutForm.*;
 public class HomePageTest implements SimpleTestsInit {
     @Test
     public void verifyThreeArrivals(){
-        homePage.open();
         assertThat(arrivals, hasSize(3));
     }
 
     @Test
     public void verifyArrivalsDetails() {
-        homePage.open();
         homePage.navigateImages();
     }
 
     @Test
     public void addBasketWithMoreBooks() {
-        homePage.open();
         homePage.clickImage(0);
         homePage.inputNumbersOfBooks(getNumbersInText(stockBooks)+1);
         addToBasketBtn.click();
@@ -42,13 +40,11 @@ public class HomePageTest implements SimpleTestsInit {
     @Test
     public void checkoutItems(){
         addBookToBasket(0);
-        viewBasket.click();
         basketPage.checkOpened();
     }
 
     @Test
     public void useCoupon(){
-        homePage.open();
         homePage.clickImage(0);
         addToBasketBtn.click();
         viewBasket.is().displayed();
@@ -57,6 +53,7 @@ public class HomePageTest implements SimpleTestsInit {
         basketPage.applyCoupon("krishnasakinala");
         cartDiscount.is().displayed();
         assertThat(actualDiscountAmount(), equalToIgnoringCase("₹50.00"));
+        getDriver().navigate().refresh();
     }
 
     @Test
@@ -113,10 +110,23 @@ public class HomePageTest implements SimpleTestsInit {
 
     @Test
     public void paymentGateway() {
-        addBookToBasket(2);
+        addBookToBasket(0);
         checkOutBtn.click();
-        checkOutForm.selectCountry("Vatican");
+        showCoupon.is().displayed();
+        showCoupon.click();
+        basketPage.applyCoupon("krishnasakinala");
+        assertThat(message.getText(), equalToIgnoringCase("Coupon code applied successfully."));
+        homePage.open();
+    }
+
+    @Test
+    public void orderConfirmation() {
+        addBookToBasket(0);
+        checkOutBtn.click();
+        checkOutForm.selectCountry("Vietnam");
         checkOutForm.fill(DEFAULT_CUSTOMER);
         placeOrder.click();
+        System.out.println(orderConfirmationPage.getTitle());
+        orderConfirmationPage.checkOpened();
     }
 }

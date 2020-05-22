@@ -19,6 +19,6 @@ public class TestData {
         c.billingFirstName = "Long"; c.billingLastName = "Dinh"; c.billingCompany = "EPAM";
         c.billingEmail = "long_dinh@epam.com"; c.billingPhone = "012345678";
         c.billingAddress1 = "259 Tran Hung Dao Street"; c.billingPostcode = "700000";
-        c.billingCity = "Ho Chi Minh"; c.paymentMethod = "cheque"; c.createAccount = true;
+        c.billingCity = "Ho Chi Minh"; c.paymentMethod = "cheque";
     });
 }

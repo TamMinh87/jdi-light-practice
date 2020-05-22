@@ -5,6 +5,7 @@ import com.epam.jdi.light.elements.composite.WebPage;
 import com.epam.jdi.light.elements.pageobjects.annotations.Title;
 import com.epam.jdi.light.elements.pageobjects.annotations.Url;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
+import com.epam.jdi.light.elements.pageobjects.annotations.smart.SName;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Text;
 import com.epam.jdi.light.ui.html.elements.common.TextField;
@@ -21,8 +22,8 @@ import static org.mytests.uiobjects.example.site.pages.HomePage.*;
 public class BasketPage extends WebPage {
     @UI(".checkout-button") public static Button checkOutBtn;
     TextField couponCode;
-    Button applyCoupon;
-    public static Button updateCart;
+    @UI("[name='apply_coupon']")Button applyCoupon;
+    @UI("[name='update_cart']") public static Button updateCart;
     @UI("//input[@type='number']") public static TextField quantity;
     @UI(".cart-discount") public static UIElement cartDiscount;
     @UI("//td[contains(@data-title,'Coupon')]/span") public static Text discountAmount;
@@ -33,6 +34,7 @@ public class BasketPage extends WebPage {
     @UI(".product-subtotal>span") public static Text subTotal;
     @UI(".order-total .amount") public static Text total;
     @UI(".cart_totals>.blockOverlay") public static UIElement spinner;
+    @SName Text acceptConditions;
 
     public void applyCoupon(String s){
         couponCode.sendKeys(s);
@@ -79,7 +81,7 @@ public class BasketPage extends WebPage {
     }
 
     public static void addBookToBasket(int num){
-        homePage.open();
+        //homePage.open();
         homePage.clickImage(num);
         addToBasketBtn.click();
         viewBasket.click();

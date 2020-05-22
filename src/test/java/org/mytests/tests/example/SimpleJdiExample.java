@@ -10,8 +10,6 @@ import org.testng.annotations.Test;
 import static com.epam.jdi.light.elements.init.UIFactory.$;
 import static org.mytests.uiobjects.example.TestData.DEFAULT_USER;
 import static org.mytests.uiobjects.example.site.JdiTestSite.*;
-import static org.mytests.uiobjects.example.site.pages.HomePage.loginForm;
-import static org.mytests.uiobjects.example.site.pages.HomePage.userIcon;
 import static org.mytests.uiobjects.example.site.pages.TikiHomePage.headerUser;
 import static org.mytests.uiobjects.example.site.pages.TikiHomePage.loginButton;
 

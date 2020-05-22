@@ -29,24 +29,25 @@ public class CheckOutForm extends Form<Customers> {
 	TextField billingCompany;
 	TextField billingEmail;
 	TextField billingPhone;
-	@UI("#s2id_billing_country") static Button billingCountry;
+	@UI("#s2id_billing_country")
+	static Button billingCountry;
 	static List<WebElement> countryList;
-	@UI("#billing_address_1") TextField billingAddress1;
+	@UI("#billing_address_1")
+	TextField billingAddress1;
 	TextField billingPostcode;
 	TextField billingCity;
-	@UI("#createaccount") Checkbox createAccount;
-	@UI("[name='payment_method']")
-	List<RadioButtons> paymentMethod;
+	@UI("[name='payment_method']") List<RadioButtons> paymentMethod;
 	@UI("#place_order") public static Button placeOrder;
 
-	public static void selectCountry(String country){
+	public void selectCountry(String country) {
 		billingCountry.click();
 		countryList = getDriver().findElements(By.cssSelector(".select2-result-label"));
-//		for(WebElement e: countryList){
-//			if(e.getText().toLowerCase().contains(country.toLowerCase())){
-//				e.click();
-//			}
-		countryList.get(0).click();
 
+		for (WebElement e : countryList) {
+			if (e.getText().toLowerCase().contains(country.toLowerCase())){
+				e.click();
+				break;
+			}
 		}
+	}
 }

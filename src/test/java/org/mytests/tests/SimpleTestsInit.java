@@ -13,6 +13,7 @@ import org.openqa.selenium.html5.LocalStorage;
 import org.openqa.selenium.html5.WebStorage;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
+import org.testng.annotations.BeforeMethod;
 import org.testng.annotations.BeforeSuite;
 
 import java.io.File;
@@ -53,9 +54,9 @@ public interface SimpleTestsInit {
         killAllSeleniumDrivers();
     }
 
-    @AfterMethod(alwaysRun = true)
-    default void teardownMethod() {
-        getDriver().navigate().refresh();
+    @BeforeMethod(alwaysRun = true)
+    default void teardownMethod(){
+        homePage.open();
         getDriver().manage().deleteAllCookies();
     }
 

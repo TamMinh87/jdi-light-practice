@@ -19,9 +19,9 @@ public class JdiTestSite {
     public static ContactFormPage contactFormPage;
     public static BasketPage basketPage;
     public static CheckOutPage checkOutPage;
-
     public static TikiHomePage tikiHomePage;
     public static TikiLoginForm tikiLoginForm;
+    public static OrderConfirmationPage orderConfirmationPage;
 
     @Css("form") public static Form<User> loginForm;
 
