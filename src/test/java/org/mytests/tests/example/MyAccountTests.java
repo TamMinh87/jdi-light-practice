@@ -4,6 +4,7 @@ import com.epam.jdi.light.driver.WebDriverFactory;
 import org.mytests.tests.SimpleTestsInit;
 import org.testng.annotations.Test;
 
+import static org.hamcrest.Matchers.containsString;
 import static org.mytests.uiobjects.example.TestData.*;
 import static org.mytests.uiobjects.example.site.JdiTestSite.myAccountPage;
 import static org.mytests.uiobjects.example.site.pages.HeaderPage.myAccountMenu;
@@ -76,6 +77,27 @@ public class MyAccountTests implements SimpleTestsInit {
         shippingEditButton.click();
         shippingForm.submit(SHIPPING_ADDRESS_INFO);
         addressMenu.click();
-        shippingCode.text().contains(SHIPPING_ADDRESS_INFO.shippingPostcode);
+        shippingCode.assertThat().text(containsString(SHIPPING_ADDRESS_INFO.shippingPostcode));
+    }
+
+    @Test
+    public void viewAccountDetails() {
+        myAccountPage.open();
+        loginForm.loginAs(DEFAULT_USER2);
+        userNameLoggedIn.is().displayed();
+        myAccountMenu.click();
+        accountDetailMenu.click();
+        accountEmail.is().displayed();
+        accountEmail.assertThat().text(DEFAULT_USER2.username);
+    }
+
+    @Test
+    public void logOutAccount() {
+        myAccountPage.open();
+        loginForm.loginAs(DEFAULT_USER2);
+        userNameLoggedIn.is().displayed();
+        myAccountMenu.click();
+        logOutLink.click();
+        userNameLoggedIn.assertThat().notAppear();
     }
 }

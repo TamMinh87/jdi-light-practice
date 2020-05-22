@@ -31,7 +31,7 @@ public class LoginTests implements SimpleTestsInit {
         myAccountPage.open();
         loginForm.loginAs(DEFAULT_USER);
         assert userNameLoggedIn.isDisplayed();
-        logoutLink.click();
+        signOutLink.click();
         myAccountPage.back();
         userNameLoggedIn.assertThat().notAppear();
     }

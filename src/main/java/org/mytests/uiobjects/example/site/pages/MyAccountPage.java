@@ -9,6 +9,7 @@ import com.epam.jdi.light.elements.pageobjects.annotations.Url;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Link;
+import com.epam.jdi.light.ui.html.elements.common.TextField;
 import org.mytests.uiobjects.example.site.sections.LoginForm;
 import org.mytests.uiobjects.example.site.sections.RegisterForm;
 import org.mytests.uiobjects.example.site.sections.ShippingForm;
@@ -17,7 +18,7 @@ import org.mytests.uiobjects.example.site.sections.ShippingForm;
 public class MyAccountPage extends WebPage {
     @UI(".login") public static LoginForm loginForm;
     @UI(".woocommerce-MyAccount-content strong") public static Label userNameLoggedIn;
-    @UI(".woocommerce-MyAccount-content [href*='logout']") public static Link logoutLink;
+    @UI(".woocommerce-MyAccount-content [href*='logout']") public static Link signOutLink;
     @UI(".woocommerce-error") public static Label errorLoginMessage;
     @UI(".register") public static RegisterForm registerForm;
     @UI("//*[contains(@class,'woocommerce-MyAccount-navigation-link')]//a[contains(text(),'Dashboard')]") public static Link dashBoardMenu;
@@ -35,4 +36,8 @@ public class MyAccountPage extends WebPage {
     @UI(".woocommerce-Address-title [href*='shipping']") public static Button shippingEditButton;
     @UI(".woocommerce-MyAccount-content form") public static ShippingForm shippingForm;
     @UI("(//*[contains(@class,'woocommerce-Address')]//address)[2]") public static Label shippingCode;
+    @UI(".woocommerce-MyAccount-navigation-link [href*='edit-account']") public static Link accountDetailMenu;
+    @UI("[for='password_current']") public static Label currentPassword;
+    public static TextField accountEmail;
+    @UI(".woocommerce-MyAccount-content [href*='customer-logout']") public static Link logOutLink;
 }

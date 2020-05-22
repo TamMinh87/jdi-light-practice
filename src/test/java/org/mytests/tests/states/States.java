@@ -32,8 +32,8 @@ public class States {
     }
     @Step
     public static void logout() {
-        if (!myAccountPage.logoutLink.isDisplayed())
+        if (!myAccountPage.signOutLink.isDisplayed())
             myAccountPage.open();
-        myAccountPage.logoutLink.click();
+        myAccountPage.signOutLink.click();
     }
 }
