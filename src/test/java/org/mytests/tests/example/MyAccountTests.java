@@ -12,6 +12,7 @@ import static org.mytests.uiobjects.example.site.pages.MyAccountPage.*;
 
 public class MyAccountTests implements SimpleTestsInit {
 
+    // TC1: My Accounts - Dashboard
     @Test
     public void checkDashboardDisplayed() {
         myAccountPage.open();
@@ -21,6 +22,7 @@ public class MyAccountTests implements SimpleTestsInit {
         dashBoardMenu.is().displayed();
     }
 
+    // TC2: My Accounts - Check order displayed
     @Test
     public void checkOrdersDisplayed() {
         myAccountPage.open();
@@ -31,6 +33,7 @@ public class MyAccountTests implements SimpleTestsInit {
         goShopButton.is().displayed();
     }
 
+    // TC3: My Accounts - View order details
     @Test
     public void viewOrderDetails() {
         myAccountPage.open();
@@ -44,6 +47,7 @@ public class MyAccountTests implements SimpleTestsInit {
         addressArea.is().displayed();
     }
 
+    // TC4: My Accounts - View order date and status
     @Test
     public void viewOrderDateAndStatus() {
         myAccountPage.open();
@@ -56,6 +60,7 @@ public class MyAccountTests implements SimpleTestsInit {
         orderStatus.assertThat().text(ONHOLD_STATUS);
     }
 
+    // TC5: My Accounts - View address info
     @Test
     public void viewAddressInfo() {
         myAccountPage.open();
@@ -67,6 +72,7 @@ public class MyAccountTests implements SimpleTestsInit {
         shippingAddressTitle.is().displayed();
     }
 
+    // TC6: My Accounts - Edit shipping address
     @Test
     public void editShippingAddressInfo() {
         myAccountPage.open();
@@ -80,6 +86,7 @@ public class MyAccountTests implements SimpleTestsInit {
         shippingCode.assertThat().text(containsString(SHIPPING_ADDRESS_INFO.shippingPostcode));
     }
 
+    // TC7: My Accounts - View account details
     @Test
     public void viewAccountDetails() {
         myAccountPage.open();
@@ -91,6 +98,7 @@ public class MyAccountTests implements SimpleTestsInit {
         accountEmail.assertThat().text(DEFAULT_USER2.username);
     }
 
+    // TC8: My Accounts - Log out
     @Test
     public void logOutAccount() {
         myAccountPage.open();
