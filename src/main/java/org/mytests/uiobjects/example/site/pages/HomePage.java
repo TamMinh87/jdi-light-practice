@@ -12,6 +12,7 @@ import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+
 @Url("http://practice.automationtesting.in/") @Title("Automation Practice Site")
 public class HomePage extends WebPage {
     @UI(".woocommerce-LoopProduct-link") public static List<WebElement> arrivals;
@@ -26,7 +27,6 @@ public class HomePage extends WebPage {
     @UI(".in-stock") public static Text stockBooks;
     @UI("//input[@type='number']") public static TextField inputStock;
     @UI("//a[text()='View Basket']") public static Link viewBasket;
-
 
     public void navigateImages() {
         int i = 0;
@@ -69,6 +69,4 @@ public class HomePage extends WebPage {
         m.find();
         return Integer.parseInt(m.group());
     }
-
-
 }

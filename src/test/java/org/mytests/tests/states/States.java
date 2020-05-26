@@ -2,8 +2,8 @@ package org.mytests.tests.states;
 
 import com.epam.jdi.light.elements.composite.WebPage;
 import io.qameta.allure.Step;
-import org.mytests.uiobjects.example.entities.User;
 
+import static org.mytests.uiobjects.example.TestData.DEFAULT_USER;
 import static org.mytests.uiobjects.example.site.JdiTestSite.*;
 
 /**
@@ -11,32 +11,29 @@ import static org.mytests.uiobjects.example.site.JdiTestSite.*;
  */
 public class States {
     private static void onSite() {
-        if (!WebPage.getUrl().contains("https://jdi-testing.github.io/jdi-light/"))
-            homePage.open();
+        if (!WebPage.getUrl().contains("http://practice.automationtesting.in/my-account/"))
+            myAccountPage.open();
     }
     @Step
     public static void shouldBeLoggedIn() {
         onSite();
-        if (!userName.isDisplayed())
+        if (!myAccountPage.userNameLoggedIn.isDisplayed())
             login();
     }
     @Step
     public static void login() {
-        userIcon.click();
-        loginForm.submit(new User(), "enter");
+        myAccountPage.loginForm.loginAs(DEFAULT_USER);
     }
     @Step
     public static void shouldBeLoggedOut() {
         onSite();
-        if (userName.isDisplayed())
+        if (myAccountPage.userNameLoggedIn.isDisplayed())
             logout();
-        if (loginForm.isDisplayed())
-            userIcon.click();
     }
     @Step
     public static void logout() {
-        if (!logout.isDisplayed())
-            userIcon.click();
-        logout.click();
+        if (!myAccountPage.signOutLink.isDisplayed())
+            myAccountPage.open();
+        myAccountPage.signOutLink.click();
     }
 }
