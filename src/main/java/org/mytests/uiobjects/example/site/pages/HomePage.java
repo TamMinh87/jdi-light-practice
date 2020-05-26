@@ -7,6 +7,8 @@ import com.epam.jdi.light.elements.pageobjects.annotations.Url;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.*;
 import com.epam.jdi.light.ui.html.elements.common.*;
 import static org.hamcrest.Matchers.*;
+import static org.mytests.uiobjects.example.site.pages.BasketPage.getPrice;
+
 import org.openqa.selenium.WebElement;
 import java.util.List;
 import java.util.regex.Matcher;
@@ -27,6 +29,9 @@ public class HomePage extends WebPage {
     @UI(".in-stock") public static Text stockBooks;
     @UI("//input[@type='number']") public static TextField inputStock;
     @UI("//a[text()='View Basket']") public static Link viewBasket;
+    //@UI(".price>.woocommerce-Price-amount") public static List<WebElement> bookPrice;
+    @UI(".price") public static List<WebElement> bookPrice;
+
 
     public void verifyBookDetails() {
         int i = 0;
@@ -58,8 +63,21 @@ public class HomePage extends WebPage {
         return "Value must be less than or equal to " + numberInStock + ".";
     }
 
-    public void clickBookImage(int i){
-        arrivals.get(i).click();
+    public void clickBookWithPrice(float num){
+        for(WebElement e: bookPrice) {
+            String price;
+            String[] s = e.getAttribute("textContent").split(" ");
+
+            if(s.length==2)
+                price = s[1];
+            else
+                price = s[0];
+
+            if(num == getPrice(price)){
+                e.click();
+                break;
+            }
+        }
     }
 
     public static int getNumbersInText(Text t){

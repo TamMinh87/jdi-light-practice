@@ -32,7 +32,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 7
     @Test
     public void addBasketWithMoreBooks() {
-        homePage.clickBookImage(0); // TODO: add method to extract price
+        homePage.clickBookWithPrice(500); // TODO: add method to extract price
         homePage.inputNumbersOfBooks(getNumbersInText(stockBooks)+1); // add quantity more than in-stock
         addToBasketBtn.click();
         inputStock.assertThat().attr("validationMessage",expectedStockMessage());
@@ -41,14 +41,14 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 8
     @Test
     public void checkoutItems(){
-        addBookToBasket(0);
+        addBookToBasket(500);
         basketPage.checkOpened();
     }
 
     //Testcase 9
     @Test
     public void useCoupon(){
-        homePage.clickBookImage(0);
+        homePage.clickBookWithPrice(500);
         addToBasketBtn.click();
         viewBasket.is().displayed();
         viewBasket.click();
@@ -66,7 +66,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 10
     @Test
     public void userCouponLessThan450(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         basketPage.applyCoupon("krishnasakinala");
         assertThat(actualErrorDiscountMessage(), equalToIgnoringCase("The minimum spend for this coupon is ₹450.00."));
     }
@@ -74,7 +74,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 11
     @Test
     public void removeBook(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         removeBook.click();
         assertThat(emptyCartMessage(), equalToIgnoringCase("Your basket is currently empty."));
     }
@@ -82,7 +82,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 12
     @Test
     public void updateBasket(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         updateCart.is().disabled();
         addOrRemoveBooks(2);
         updateCart.is().enabled();
@@ -99,7 +99,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 13,14
     @Test
     public void totalPrice(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         addOrRemoveBooks(2);
         updateCart.click();
         spinner.waitFor().disappear();
@@ -109,14 +109,14 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 15
     @Test
     public void checkTotalAndSubtotal(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         assertThat(getPrice(subTotal.getText()), lessThan(getPrice(total.getText())));
     }
 
     //Testcase 16
     @Test
     public void verifyCheckOutPage(){
-        addBookToBasket(2);
+        addBookToBasket(350);
         checkOutBtn.click();
         checkOutPage.checkOpened();
     }
@@ -124,7 +124,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 17
     @Test
     public void paymentGateway() {
-        addBookToBasket(0);
+        addBookToBasket(500);
         checkOutBtn.click();
         showCoupon.is().displayed();
         showCoupon.click();
@@ -136,7 +136,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 18
     @Test
     public void orderConfirmation() {
-        addBookToBasket(0);
+        addBookToBasket(500);
         checkOutBtn.click();
         checkOutForm.selectCountry("Vietnam");
         checkOutForm.fill(DEFAULT_CUSTOMER);

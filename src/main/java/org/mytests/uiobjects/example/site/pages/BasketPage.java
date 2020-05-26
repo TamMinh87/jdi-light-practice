@@ -80,8 +80,8 @@ public class BasketPage extends WebPage {
         return price.floatValue();
     }
 
-    public static void addBookToBasket(int num){
-        homePage.clickBookImage(num);
+    public static void addBookToBasket(float price){
+        homePage.clickBookWithPrice(price);
         addToBasketBtn.click();
         viewBasket.click();
     }
