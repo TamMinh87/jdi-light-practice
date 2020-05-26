@@ -33,7 +33,7 @@ public class UserDataProvider {
             d.username = "";
             d.password = "";
         });
-        c.errorMessage = "Error: Username is required.1";
+        c.errorMessage = "Error: Username is required.";
     });
 
     public static RegistrationData INVALID_EMAIL_CORRECT_PASSWORD = new RegistrationData().set(c -> {
