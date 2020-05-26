@@ -1,6 +1,5 @@
 package org.mytests.tests.example;
 
-import com.epam.jdi.light.driver.WebDriverFactory;
 import org.mytests.tests.SimpleTestsInit;
 import org.testng.annotations.Test;
 

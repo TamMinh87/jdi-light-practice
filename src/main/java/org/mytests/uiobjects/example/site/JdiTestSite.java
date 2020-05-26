@@ -2,9 +2,6 @@ package org.mytests.uiobjects.example.site;
 
 import com.epam.jdi.light.elements.pageobjects.annotations.JSite;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.Css;
-import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
-import org.mytests.uiobjects.example.entities.User;
-import org.mytests.uiobjects.example.site.custom.MenuItem;
 import org.mytests.uiobjects.example.site.pages.*;
 import org.openqa.selenium.WebElement;
 
@@ -18,5 +15,4 @@ public class JdiTestSite {
     public static HeaderPage headerPage;
 
     @Css(".fa-sign-out") public static WebElement logout;
-
 }

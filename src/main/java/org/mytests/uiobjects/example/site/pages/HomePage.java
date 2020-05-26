@@ -28,7 +28,7 @@ public class HomePage extends WebPage {
     @UI("//input[@type='number']") public static TextField inputStock;
     @UI("//a[text()='View Basket']") public static Link viewBasket;
 
-    public void navigateImages() {
+    public void verifyBookDetails() {
         int i = 0;
         for(WebElement e: images){
             e.click();
@@ -58,7 +58,7 @@ public class HomePage extends WebPage {
         return "Value must be less than or equal to " + numberInStock + ".";
     }
 
-    public void clickImage(int i){
+    public void clickBookImage(int i){
         arrivals.get(i).click();
     }
 

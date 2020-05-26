@@ -81,7 +81,7 @@ public class BasketPage extends WebPage {
     }
 
     public static void addBookToBasket(int num){
-        homePage.clickImage(num);
+        homePage.clickBookImage(num);
         addToBasketBtn.click();
         viewBasket.click();
     }

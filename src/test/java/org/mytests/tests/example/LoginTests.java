@@ -31,7 +31,6 @@ public class LoginTests implements SimpleTestsInit {
         errorLoginMessage.has().attr("outerText", loginData.errorMessage);
     }
 
-
     /**
      * TC8: Login Authentication.
      */
@@ -39,10 +38,9 @@ public class LoginTests implements SimpleTestsInit {
     public void loginAuthentication() {
         myAccountPage.open();
         loginForm.loginAs(DEFAULT_USER);
-        assert userNameLoggedIn.isDisplayed();
+        userNameLoggedIn.is().displayed();
         signOutLink.click();
         myAccountPage.back();
         userNameLoggedIn.assertThat().notAppear();
     }
-
 }

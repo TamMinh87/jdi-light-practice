@@ -1,6 +1,5 @@
 package org.mytests.uiobjects.example;
 
-import org.mytests.uiobjects.example.entities.Contacts;
 import org.mytests.uiobjects.example.entities.Customers;
 import org.mytests.uiobjects.example.Utils.General;
 import org.mytests.uiobjects.example.entities.ShippingAddress;
@@ -12,9 +11,6 @@ public class TestData {
 
     public static User DEFAULT_USER2 = new User().set(
             u -> {u.username = "thuanduongtest3@gmail.com"; u.password = "Thuan120891";});
-
-    public static User INCORRECT_USER = new User().set(
-            u -> {u.username = "thuanduongtest21@gmail.com"; u.password = "Thuan120891";});
 
     public static Customers DEFAULT_CUSTOMER = new Customers().set(c-> {
         c.billingFirstName = "Long"; c.billingLastName = "Dinh"; c.billingCompany = "EPAM";

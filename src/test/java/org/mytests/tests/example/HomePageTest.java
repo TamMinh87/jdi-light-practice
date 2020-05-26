@@ -1,7 +1,6 @@
 package org.mytests.tests.example;
 
 import org.mytests.tests.SimpleTestsInit;
-
 import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
@@ -15,7 +14,6 @@ import static org.mytests.uiobjects.example.site.pages.CheckOutPage.showCoupon;
 import static org.mytests.uiobjects.example.site.pages.HomePage.*;
 import static org.mytests.uiobjects.example.site.sections.CheckOutForm.*;
 
-
 public class HomePageTest implements SimpleTestsInit {
     //Testcase 1 is not valid
 
@@ -28,14 +26,14 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 3,4,5,6
     @Test
     public void verifyArrivalsDetails() {
-        homePage.navigateImages();
+        homePage.verifyBookDetails();
     }
 
     //Testcase 7
     @Test
     public void addBasketWithMoreBooks() {
-        homePage.clickImage(0);
-        homePage.inputNumbersOfBooks(getNumbersInText(stockBooks)+1);
+        homePage.clickBookImage(0); // TODO: add method to extract price
+        homePage.inputNumbersOfBooks(getNumbersInText(stockBooks)+1); // add quantity more than in-stock
         addToBasketBtn.click();
         inputStock.assertThat().attr("validationMessage",expectedStockMessage());
     }
@@ -50,7 +48,7 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 9
     @Test
     public void useCoupon(){
-        homePage.clickImage(0);
+        homePage.clickBookImage(0);
         addToBasketBtn.click();
         viewBasket.is().displayed();
         viewBasket.click();
@@ -58,6 +56,10 @@ public class HomePageTest implements SimpleTestsInit {
         basketPage.applyCoupon("krishnasakinala");
         cartDiscount.is().displayed();
         assertThat(actualDiscountAmount(), equalToIgnoringCase("₹50.00"));
+
+        // there is a bug, sometime cookies are slow to be added to browser
+        // which causes failure for the following test case
+        // need to refresh to make sure we can clear this cookie before running other test
         getDriver().navigate().refresh();
     }
 
