@@ -23,9 +23,9 @@ public class HomePage extends WebPage {
     @UI(".products") public static JList<Arrival> arrivals;
     @UI(".wp-post-image") List<WebElement> images;
     @UI("//button[@type='submit']") public static Button addToBasketBtn;
-    @UI("//a[contains(text(),'Description')]") Label descriptionLbl;
-    @UI("//a[contains(text(),'Reviews')]") Label reviewsLbl;
-    @UI(".product_title") Text productTitle;
+    @UI("//a[contains(text(),'Description')]") public static Label descriptionLbl;
+    @UI("//a[contains(text(),'Reviews')]") public static Label reviewsLbl;
+    @UI(".product_title") public static Text productTitle;
     @UI(".woocommerce-message")
     public static Text message;
     @UI("//a[contains(text(),'Home')]") Link home;
@@ -34,6 +34,7 @@ public class HomePage extends WebPage {
     @UI("//a[text()='View Basket']") public static Link viewBasket;
     //@UI(".price>.woocommerce-Price-amount") public static List<WebElement> bookPrice;
     @UI(".price") public static List<WebElement> bookPrice;
+    @UI(".cartcontents") public static Text cartContents;
 
 
     public void verifyBookDetails() {
@@ -56,8 +57,8 @@ public class HomePage extends WebPage {
         inputStock.sendKeys(String.valueOf(number));
     }
 
-    public String expectedAddBasketMessage(){
-        title = productTitle.getText();
+    public static String expectedAddBasketMessage(){
+        String title = productTitle.getText();
         return '“' + title + '”' + " has been added to your basket.";
     }
 
