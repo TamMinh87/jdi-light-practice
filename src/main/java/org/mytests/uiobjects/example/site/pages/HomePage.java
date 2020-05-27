@@ -1,23 +1,26 @@
 package org.mytests.uiobjects.example.site.pages;
 
-import com.epam.jdi.light.elements.common.*;
+import com.epam.jdi.light.elements.common.Label;
+import com.epam.jdi.light.elements.complex.JList;
+import com.epam.jdi.light.elements.complex.WebList;
 import com.epam.jdi.light.elements.composite.WebPage;
-import com.epam.jdi.light.elements.pageobjects.annotations.Title;
-import com.epam.jdi.light.elements.pageobjects.annotations.Url;
-import com.epam.jdi.light.elements.pageobjects.annotations.locators.*;
+import com.epam.jdi.light.elements.pageobjects.annotations.*;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.*;
-import static org.hamcrest.Matchers.*;
-import static org.mytests.uiobjects.example.site.pages.BasketPage.getPrice;
-
+import org.mytests.uiobjects.example.site.custom.Arrival;
 import org.openqa.selenium.WebElement;
+
 import java.util.List;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
 
+import static org.hamcrest.Matchers.*;
+import static org.mytests.uiobjects.example.site.pages.BasketPage.*;
 
 @Url("http://practice.automationtesting.in/") @Title("Automation Practice Site")
 public class HomePage extends WebPage {
-    @UI(".woocommerce-LoopProduct-link") public static List<WebElement> arrivals;
+    @UI(".n2-ss-slider-1 img") @GetAny public static JList<Image> slider;
+    @UI(".products") public static JList<Arrival> arrivals;
     @UI(".wp-post-image") List<WebElement> images;
     @UI("//button[@type='submit']") public static Button addToBasketBtn;
     @UI("//a[contains(text(),'Description')]") Label descriptionLbl;

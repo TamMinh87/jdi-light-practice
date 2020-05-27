@@ -4,6 +4,7 @@ import com.epam.jdi.light.elements.common.UIElement;
 import com.epam.jdi.light.elements.complex.dropdown.Dropdown;
 import com.epam.jdi.light.elements.complex.dropdown.DropdownSelect;
 import com.epam.jdi.light.elements.composite.Form;
+import com.epam.jdi.light.elements.pageobjects.annotations.locators.JDropdown;
 import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import com.epam.jdi.light.ui.html.elements.common.Button;
 import com.epam.jdi.light.ui.html.elements.common.Checkbox;
@@ -13,6 +14,7 @@ import com.epam.jdi.light.ui.html.elements.complex.RadioButtons;
 import org.mytests.uiobjects.example.entities.Contacts;
 import org.mytests.uiobjects.example.entities.Customers;
 import org.mytests.uiobjects.example.site.custom.MultiDropdown;
+import org.mytests.uiobjects.example.site.custom.SearchDropdown;
 import org.openqa.selenium.By;
 import org.openqa.selenium.WebElement;
 
@@ -38,11 +40,16 @@ public class CheckOutForm extends Form<Customers> {
 	TextField billingCity;
 	@UI("[name='payment_method']") List<RadioButtons> paymentMethod;
 	@UI("#place_order") public static Button placeOrder;
+	@JDropdown(value = ".select2-chosen", list = "*root*#select2-results-1 li")
+	public SearchDropdown country;
 
+	public void placeOrder(Customers customer) {
+		fill(customer);
+		placeOrder.click();
+	}
 	public void selectCountry(String country) {
 		billingCountry.click();
 		countryList = getDriver().findElements(By.cssSelector(".select2-result-label"));
-
 		for (WebElement e : countryList) {
 			if (e.getText().toLowerCase().contains(country.toLowerCase())){
 				e.click();

@@ -3,6 +3,8 @@ package org.mytests.tests.example;
 import org.mytests.tests.SimpleTestsInit;
 import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static org.hamcrest.Matchers.*;
+
+import org.mytests.uiobjects.example.site.pages.ProductPage;
 import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mytests.uiobjects.example.TestData.DEFAULT_CUSTOMER;
@@ -12,15 +14,27 @@ import static org.mytests.uiobjects.example.site.pages.BasketPage.addOrRemoveBoo
 import static org.mytests.uiobjects.example.site.pages.CheckOutPage.checkOutForm;
 import static org.mytests.uiobjects.example.site.pages.CheckOutPage.showCoupon;
 import static org.mytests.uiobjects.example.site.pages.HomePage.*;
+import static org.mytests.uiobjects.example.site.pages.ProductPage.*;
+import static org.mytests.uiobjects.example.site.pages.ShopPage.*;
 import static org.mytests.uiobjects.example.site.sections.CheckOutForm.*;
 
 public class HomePageTest implements SimpleTestsInit {
     //Testcase 1 is not valid
+    @Test
+    public void testCase1() {
+        topMenu.select("Shop");
+        shopPage.checkOpened();
+        breadcrumb.homeLink.click();
+        homePage.checkOpened();
+        slider.has().size(3);
+    }
 
     //Testcase 2
     @Test
     public void verifyThreeArrivals(){
-        assertThat(arrivals, hasSize(3));
+        topMenu.select("Shop");
+        breadcrumb.homeLink.click();
+        arrivals.has().size(3);
     }
 
     //Testcase 3,4,5,6
@@ -136,11 +150,15 @@ public class HomePageTest implements SimpleTestsInit {
     //Testcase 18
     @Test
     public void orderConfirmation() {
-        addBookToBasket(500);
+        topMenu.select("Shop");
+        breadcrumb.homeLink.click();
+        arrivals.has().size(3);
+        //arrivals.select(1);
+        arrivals.select("Selenium Ruby");
+        productPage.checkOpened();
+        productPage.addToBasket();
         checkOutBtn.click();
-        checkOutForm.selectCountry("Vietnam");
-        checkOutForm.fill(DEFAULT_CUSTOMER);
-        placeOrder.click();
+        checkOutForm.placeOrder(DEFAULT_CUSTOMER);
         orderConfirmationPage.checkOpened();
     }
 }
