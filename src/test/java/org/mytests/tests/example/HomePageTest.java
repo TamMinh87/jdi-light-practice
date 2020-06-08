@@ -1,10 +1,13 @@
 package org.mytests.tests.example;
 
 import org.mytests.tests.SimpleTestsInit;
+
+import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mytests.uiobjects.example.TestData.DEFAULT_CUSTOMER;
+import static org.mytests.uiobjects.example.TestData.percy;
 import static org.mytests.uiobjects.example.site.JdiTestSite.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.addOrRemoveBooks;
@@ -18,10 +21,11 @@ public class HomePageTest implements SimpleTestsInit {
     @Test
     public void testCase1() {
         topMenu.select("Shop");
-        shopPage.checkOpened();
-        breadcrumb.homeLink.click();
-        homePage.checkOpened();
-        slider.has().size(3);
+//        shopPage.checkOpened();
+//        breadcrumb.homeLink.click();
+//        homePage.checkOpened();
+//        slider.has().size(3);
+        percy.snapshot("Test 1");
     }
 
     //Testcase 2
@@ -30,6 +34,7 @@ public class HomePageTest implements SimpleTestsInit {
         topMenu.select("Shop");
         breadcrumb.homeLink.click();
         arrivals.has().size(3);
+        percy.snapshot("Test 2");
     }
 
     //Testcase 3
@@ -40,6 +45,7 @@ public class HomePageTest implements SimpleTestsInit {
         arrivals.has().size(3);
         homePage.clickBookWithPrice(500);
         addToBasketBtn.is().displayed();
+        percy.snapshot("Test 3");
     }
 
     //Testcase 4
