@@ -16,6 +16,7 @@ public class LoginTests implements SimpleTestsInit {
         myAccountPage.open();
         loginForm.loginAs(DEFAULT_USER);
         userNameLoggedIn.is().displayed();
+        percy.snapshot("TC1_loginWithValidUser");
     }
 
     /**
@@ -42,5 +43,6 @@ public class LoginTests implements SimpleTestsInit {
         signOutLink.click();
         myAccountPage.back();
         userNameLoggedIn.assertThat().notAppear();
+        percy.snapshot("loginAuthentication");
     }
 }
