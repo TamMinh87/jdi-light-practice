@@ -1,9 +1,11 @@
 package org.mytests.uiobjects.example;
 
+import io.percy.selenium.Percy;
 import org.mytests.uiobjects.example.entities.Customers;
 import org.mytests.uiobjects.example.Utils.General;
 import org.mytests.uiobjects.example.entities.ShippingAddress;
 import org.mytests.uiobjects.example.entities.User;
+
 
 public class TestData {
     public static User DEFAULT_USER = new User().set(
@@ -27,4 +29,5 @@ public class TestData {
 
     public static ShippingAddress SHIPPING_ADDRESS_INFO = new ShippingAddress().set(s -> {s.shippingPostcode = General.getCurrentDate(FORMAT_DATE_YYYYMMDD);});
 
+    public static Percy percy;
 }

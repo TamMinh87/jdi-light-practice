@@ -3,7 +3,11 @@
 <suite name="Test suite" parallel="classes" thread-count="1">
     <test name="Tests">
         <classes>
-            <class name="org.mytests.tests.example.LoginTests"/>
+            <class name="org.mytests.tests.example.HomePageTest">
+                <methods>
+                    <include name="testCase1"/>
+                </methods>
+            </class>
         </classes>
     </test>
 </suite>

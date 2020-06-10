@@ -1,10 +1,13 @@
 package org.mytests.tests.example;
 
 import org.mytests.tests.SimpleTestsInit;
+
+import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static org.hamcrest.Matchers.*;
 import org.testng.annotations.Test;
 import static org.hamcrest.MatcherAssert.assertThat;
 import static org.mytests.uiobjects.example.TestData.DEFAULT_CUSTOMER;
+import static org.mytests.uiobjects.example.TestData.percy;
 import static org.mytests.uiobjects.example.site.JdiTestSite.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.*;
 import static org.mytests.uiobjects.example.site.pages.BasketPage.addOrRemoveBooks;
@@ -22,6 +25,7 @@ public class HomePageTest implements SimpleTestsInit {
         breadcrumb.homeLink.click();
         homePage.checkOpened();
         slider.has().size(3);
+        percy.snapshot("Test 1");
     }
 
     //Testcase 2

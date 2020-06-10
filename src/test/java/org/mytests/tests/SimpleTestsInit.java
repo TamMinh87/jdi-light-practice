@@ -1,5 +1,6 @@
 package org.mytests.tests;
 
+import io.percy.selenium.Percy;
 import org.mytests.uiobjects.example.site.JdiTestSite;
 import org.testng.annotations.AfterMethod;
 import org.testng.annotations.AfterSuite;
@@ -9,8 +10,9 @@ import static com.epam.jdi.light.driver.WebDriverFactory.getDriver;
 import static com.epam.jdi.light.driver.WebDriverUtils.killAllSeleniumDrivers;
 import static com.epam.jdi.light.logger.LogLevels.STEP;
 import static com.epam.jdi.light.settings.WebSettings.logger;
-import static org.mytests.uiobjects.example.site.JdiTestSite.homePage;
+import static org.mytests.uiobjects.example.site.JdiTestSite.*;
 import static com.epam.jdi.light.elements.composite.WebPage.*;
+import static org.mytests.uiobjects.example.TestData.percy;
 
 
 public interface SimpleTestsInit {
@@ -19,6 +21,7 @@ public interface SimpleTestsInit {
         logger.setLogLevel(STEP);
         openSite(JdiTestSite.class);
         logger.info("Run Tests");
+        percy = new Percy(getDriver());
     }
 
     @BeforeMethod(alwaysRun = true)
