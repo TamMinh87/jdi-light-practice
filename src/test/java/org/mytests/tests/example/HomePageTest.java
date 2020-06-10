@@ -22,9 +22,9 @@ public class HomePageTest implements SimpleTestsInit {
     public void testCase1() {
         topMenu.select("Shop");
         shopPage.checkOpened();
-//        breadcrumb.homeLink.click();
-//        homePage.checkOpened();
-//        slider.has().size(3);
+        breadcrumb.homeLink.click();
+        homePage.checkOpened();
+        slider.has().size(3);
         percy.snapshot("Test 1");
     }
 
