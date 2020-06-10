@@ -6,4 +6,5 @@ import com.epam.jdi.light.elements.pageobjects.annotations.locators.UI;
 import org.mytests.uiobjects.example.entities.User;
 
 public class LoginForm extends Form<User> {
+
 }
