@@ -21,7 +21,7 @@ public class HomePageTest implements SimpleTestsInit {
     @Test
     public void testCase1() {
         topMenu.select("Shop");
-//        shopPage.checkOpened();
+        shopPage.checkOpened();
 //        breadcrumb.homeLink.click();
 //        homePage.checkOpened();
 //        slider.has().size(3);
@@ -34,7 +34,6 @@ public class HomePageTest implements SimpleTestsInit {
         topMenu.select("Shop");
         breadcrumb.homeLink.click();
         arrivals.has().size(3);
-        percy.snapshot("Test 2");
     }
 
     //Testcase 3
@@ -45,7 +44,6 @@ public class HomePageTest implements SimpleTestsInit {
         arrivals.has().size(3);
         homePage.clickBookWithPrice(500);
         addToBasketBtn.is().displayed();
-        percy.snapshot("Test 3");
     }
 
     //Testcase 4

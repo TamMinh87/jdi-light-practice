@@ -6,8 +6,6 @@
             <class name="org.mytests.tests.example.HomePageTest">
                 <methods>
                     <include name="testCase1"/>
-                    <include name="verifyThreeArrivals"/>
-                    <include name="verifyArrivalsNavigate"/>
                 </methods>
             </class>
         </classes>
